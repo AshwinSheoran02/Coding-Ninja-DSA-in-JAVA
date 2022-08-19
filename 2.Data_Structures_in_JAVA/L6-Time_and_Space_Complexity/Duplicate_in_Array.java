@@ -1,8 +1,6 @@
-// You have been given an integer array/list(ARR) of size N. Where N is equal to [2M + 1].
-// Now, in the given array/list, 'M' numbers are present twice and one number is present only once.
-// You need to find and return that number which is unique in the array/list.
-//  Note:
-// Unique element is always present in the array/list according to the given condition.
+// You have been given an integer array/list(ARR) of size N which contains numbers from 0 to (N - 2). Each number is present at least once. That is, if N = 5, the array/list constitutes values ranging from 0 to 3, and among these, there is a single integer value that is present twice. You need to find and return that duplicate number present in the array.
+// Note :
+// Duplicate number is always present in the given array/list.
 // Input format :
 // The first line contains an Integer 't' which denotes the number of test cases or queries to be run. Then the test cases follow.
 
@@ -10,34 +8,21 @@
 
 // Second line contains 'N' single space separated integers representing the elements in the array/list.
 // Output Format :
-// For each test case, print the unique element present in the array.
+// For each test case, print the duplicate element in the array/list.
+
+// Output for every test case will be printed in a separate line.
 
 import java.util.*;
 public class Solution {
 
-	public static int findUnique(int[] arr) {
-		//Your code goes here
-          int XOR = 0;;
-        for(int i=0;i<arr.length;i++)
-        {
-           XOR ^= arr[i];    
-        }
-        return XOR;  //time complexity is O(n) ans space Complexity is O(1).
-	}
-    public static int findUnique1(int[] arr) {
-		//Your code goes here
-        if(arr.length == 0){
-            return -1;
-        }
-        Arrays.sort(arr); //nlogn
-        if(arr[0]!=arr[1]){
-            return arr[0]; //for 1st unique element
-        }
-        for(int i=1;i<arr.length-1;i++){  //bigo of n.
-            if(arr[i]!=arr[i+1] && arr[i]!=arr[i-1]){
-                return arr[i];
-            }
-        }
-        return -1; //final time complexity = nlogn+n
+	public static int findDuplicate(int[] arr) {
+	  int sum=0;
+    for(int i=0;i<arr.length;i++)
+    {
+        sum+=arr[i];
     }
+    int sumFormula=((arr.length-2)*(arr.length-1))/2;
+ 
+    return sum-sumFormula;
+	}
 }
